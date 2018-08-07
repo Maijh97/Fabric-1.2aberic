@@ -1,7 +1,7 @@
 # Hyberledger-1.2aberic
 Hyberledger Fabric V1.2 Run Examples
 
-1. 区块链节点为 peer(2) order(1) kafka(1) zokkeeper(1) cli(1)
+1. 区块链节点为 **peer(2) order(1) kafka(1) zokkeeper(1) cli(1)**
 2. 拷贝用例到**Hyberledger Fabric** 源码的根目录下
 3. 环境的准备
     ```linux
@@ -19,13 +19,13 @@ Hyberledger Fabric V1.2 Run Examples
     * 拷贝用作生成二进制文件的bin到Hyberledger-1.2aberic下
     
     ```linux
-    cd release
+    cd gopath/src/github.com/hyperledger/fabric/release
     cp -r linux-amd64/bin/ ../Hyberledger-1.2aberic/
     ```
     
     * 生成组织证书创建通道和创世块
     
-    ```
+    ```linux
     cd Hyberledger-1.2aberic
     # 生成证书
     ./bin/cryptogen generate --config=./crypto-config.yaml
@@ -62,7 +62,7 @@ Hyberledger Fabric V1.2 Run Examples
     ```  
     *   加入通道
     
-    ```
+    ```linux
     peer channel join -b mychannel.block
     ```  
     *  安装链码
@@ -78,12 +78,12 @@ Hyberledger Fabric V1.2 Run Examples
     * 实现查询合约数据
         
     ```linux
-    peer chaincode query -C mychannel -n mychannel -c '{"Args":["query","a"]}'
+    peer chaincode query -C mychannel -n mycc -c '{"Args":["query","a"]}'
     ```  
     * 实现合约转移金额 a转b
     
     ```linux
-    peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_CA -C mychannel -n mychannel peer0.org1.example.com -c '{"Args":["invoke","a","b","10"]}' 
+    peer chaincode invoke -o orderer.example.com:7050  --tls --cafile $ORDERER_CA -C mychannel -n mycc peer0.org1.example.com -c '{"Args":["invoke","a","b","10"]}' 
     ```  
     
    
